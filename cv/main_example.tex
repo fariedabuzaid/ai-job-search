@@ -1,8 +1,7 @@
-%% Example CV - [YOUR_NAME]
+%% Example CV - Faried Abu Zaid
 %% Comprehensive overview of all competencies, experience, and achievements.
 %% Use as a master reference when tailoring role-specific CVs.
 %%
-%% SETUP: Run /setup to populate this with your actual information.
 %% Compile with: lualatex main_example.tex
 %% (pdflatex often fails on modern MiKTeX with fontawesome5 font-expansion errors.)
 
@@ -18,24 +17,26 @@
 \renewcommand*{\sectionstyle}[1]{{\sectionfont\color{color1}#1}}
 
 \usepackage[utf8]{inputenc}
+\usepackage{needspace}
+\usepackage{academicons}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=blue,
-    pdftitle={[YOUR_NAME] - CV},
+    pdftitle={Faried Abu Zaid - CV},
     pdfpagemode=FullScreen,
 }
 \usepackage[scale=0.80]{geometry}
 \usepackage{import}
 
 % personal data
-\name{[First]}{[Last]}
-\address{[Your Address, City, Country]}{}{}
-\phone[mobile]{[+XX XXXXXXXXXX]}
-\email{[your.email@example.com]}
-\extrainfo{\href{[https://linkedin.com/in/your-profile]}{LinkedIn}, \href{[https://github.com/your-username]}{GitHub}}
+\name{Faried}{Abu Zaid}
+\address{Daphnestr. 32, 81925 Munich, Germany}{}{}
+\phone[mobile]{+49 1704902149}
+\email{fariedaz@gmail.com}
+\extrainfo{\faGlobe~\href{https://fariedabuzaid.github.io}{Website} \quad \faGithub~\href{https://github.com/fariedabuzaid}{GitHub} \quad \aidblp~\href{https://dblp.org/pid/31/10950.html}{DBLP}}
 
 \begin{document}
 
@@ -46,7 +47,7 @@
 % ============================================================
 
 \vspace{6pt}
-\small{[Write a 3-5 line profile statement tailored to the role you're applying for. Focus on what makes you uniquely qualified. Example: "Data scientist with a PhD in [field] and X years of industry experience. Combines deep domain expertise in [domain] with strong applied machine learning and Python development skills. Experienced in developing end-to-end ML pipelines, from data ingestion to stakeholder-facing dashboards."]}
+\small{AI researcher with a PhD in Computer Science and 10+ years across machine learning research, technical leadership, and applied AI. Core strengths in generative modeling (flow matching, normalizing flows), scientific machine learning, Bayesian methods, uncertainty quantification, and trustworthy AI. First-authored VeriFlow (AAAI 2026) and On Uniformly Scaling Flows; contributor to the open-source sbi reloaded toolkit. I ground systems in sound methodology and push them toward real-world impact, most recently at DeepL on real-time speech-to-speech translation at 10B+ parameter scale.}
 
 % ============================================================
 %     CORE COMPETENCIES
@@ -56,15 +57,15 @@
 \vspace{1pt}
 \begin{itemize}
 
-\item \textbf{[Skill Category 1]}: [Specific skills, frameworks, tools. Be concrete.]
+\item \textbf{Scientific ML}: simulation-based inference, Bayesian methods, uncertainty quantification, anomaly detection, inverse problems
 
-\item \textbf{[Skill Category 2]}: [Specific skills, frameworks, tools.]
+\item \textbf{Generative modeling}: flow matching, normalizing flows, diffusion models, ODE-based flow modeling
 
-\item \textbf{[Skill Category 3]}: [Specific skills, frameworks, tools.]
+\item \textbf{Trustworthy / responsible AI}: explainable AI (XAI), neural network verification, model validation, failure-mode analysis
 
-\item \textbf{[Skill Category 4]}: [Domain expertise, methods, approaches.]
+\item \textbf{Programming \& ML engineering}: Python (6+ yrs), PyTorch, JAX, scikit-learn, Pyro, sbi, NumPy/SciPy/Pandas, Ray, WandB; reproducible workflows, ablation studies, benchmark design
 
-\item \textbf{[Skill Category 5]}: [Tools, platforms, software.]
+\item \textbf{Infrastructure}: distributed training/inference, Docker, OpenShift, AWS, GCP, Git
 
 \end{itemize}
 
@@ -76,32 +77,49 @@
 \vspace{3pt}
 \begin{itemize}
 
-% --- Most Recent Role ---
-\item{\cventry{[YYYY--Present]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\needspace{5\baselineskip}
+\item{\cventry{Jan--Jun 2026}{Researcher (Real-Time Speech-to-Speech Translation)}{DeepL}{Germany}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1 - be specific, use numbers where possible]
-    \item [Achievement or responsibility 2]
-    \item [Achievement or responsibility 3]
-    \item [Achievement or responsibility 4]
+    \item Contribute to large-scale production ML for DeepL's Voice products in highly distributed environments (training, evaluation, robust deployment)
+    \item Work on transformer-based encoder-decoder models with experiment-driven iteration for quality-critical, user-facing applications
+    \item Distributed training and optimization of 10B+ parameter models under strict quality, latency, and robustness constraints
 \end{itemize}}}
 
 \vspace{3pt}
 
-% --- Previous Role ---
-\item{\cventry{[YYYY--YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\needspace{5\baselineskip}
+\item{\cventry{2020--2025}{Senior AI Researcher, TransferLab}{appliedAI / appliedAI Institute for Europe}{Munich}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1]
-    \item [Achievement or responsibility 2]
-    \item [Achievement or responsibility 3]
+    \item Led a subgroup on uncertainty quantification within the TransferLab, appliedAI's research department
+    \item Implemented flow matching for simulation-based inference; contributed to \emph{sbi reloaded}, an open-source SBI toolkit
+    \item Co-supervised a PhD on SBI for material design (joint with BMW and the University of the Bundeswehr)
+    \item First-authored \emph{VeriFlow} (AAAI 2026) and \emph{On Uniformly Scaling Flows} (NeurIPS 2026 submission)
+    \item Designed and taught practitioner ML courses; scaled flagship courses online (+300\% global reach)
+    \item Industrial delivery: UK pharma supply-chain forecasting; hybrid-engine optimization with 7 developers (+15\% simulated fuel efficiency); XAI-guided data frameworks for extrusion manufacturing
 \end{itemize}}}
 
 \vspace{3pt}
 
-% --- Earlier Role ---
-\item{\cventry{[YYYY--YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\needspace{5\baselineskip}
+\item{\cventry{2018--2019}{Lead Data Scientist, AI for Data Management}{Camelot Consultants}{}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1]
-    \item [Achievement or responsibility 2]
+    \item Led end-to-end analytics and ML delivery for ambiguous industrial problems, from data preparation and modeling to deployment and stakeholder communication
+\end{itemize}}}
+
+\vspace{3pt}
+
+\needspace{4\baselineskip}
+\item{\cventry{2015--2018}{Postdoctoral Researcher, Automata and Logic}{TU Ilmenau}{}{}{\vspace{1pt}
+\begin{itemize}
+    \item Research in algorithmic model theory and logic; university lecturing in automata theory, logic, and complexity
+\end{itemize}}}
+
+\vspace{3pt}
+
+\needspace{4\baselineskip}
+\item{\cventry{2011--2015}{Research Assistant, Mathematical Foundations of CS}{RWTH Aachen}{}{}{\vspace{1pt}
+\begin{itemize}
+    \item Research and teaching in a DFG-funded project on automatic structures
 \end{itemize}}}
 
 \end{itemize}
@@ -114,14 +132,15 @@
 \vspace{1pt}
 \begin{itemize}
 
-\item{\cventry{[YYYY--YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-Thesis: ``[Thesis Title].'' [Brief description of research focus.]
+\needspace{4\baselineskip}
+\item{\cventry{2011--2016}{Dr. rer. nat. (PhD) in Computer Science}{RWTH Aachen}{}{\textit{magna cum laude}}{\vspace{1pt}
+Dissertation: ``Algorithmic Solutions via Model Theoretic Interpretations'' (advisors: Grädel, Kuske).
 }}
 
 \vspace{3pt}
 
-\item{\cventry{[YYYY--YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-[Brief description or key topics.]
+\item{\cventry{2003--2010}{Diploma in Computer Science}{RWTH Aachen}{}{\textit{with distinction}}{\vspace{1pt}
+Thesis: ``Definability in $\omega$-automatic structures.'' Focus: logic and complexity theory; minor in Psychology.
 }}
 
 \end{itemize}
@@ -133,37 +152,37 @@ Thesis: ``[Thesis Title].'' [Brief description of research focus.]
 \section{Languages}
 \vspace{1pt}
 \begin{itemize}
-\item [Language 1] (native), [Language 2] (fluent), [Language 3] (intermediate).
+\item German (native), English (fluent), Arabic (A1, learning).
 \end{itemize}
 
 % ============================================================
-%     PUBLICATIONS (optional)
+%     SELECTED PUBLICATIONS
 % ============================================================
 
-\section{Publications}
+\section{Selected Publications}
 \vspace{1pt}
 \begin{itemize}
-\item [Author(s)] ([Year]). [Title]. [Journal/Conference]. \href{[DOI_URL]}{DOI link}
+\item \textbf{F. Abu Zaid}, D. Neider, M. Yalçiner (2026). VeriFlow: Modeling Distributions for Neural Network Verification. \emph{AAAI 2026}.
+\item J. Boelts, M. Deistler, \ldots \textbf{F. Abu Zaid}, et al. (2025). sbi reloaded: a toolkit for simulation-based inference workflows. \emph{J. Open Source Software}.
+\item \textbf{F. Abu Zaid}, T. Katzke, E. Müller, D. Neider (2025). On Uniformly Scaling Flows. \emph{CoRR abs/2510.09452} (NeurIPS 2026 submission).
+\item \textbf{F. Abu Zaid}, E. Grädel, L. Kaiser, W. Pakusa (2014). Model-Theoretic Properties of $\omega$-Automatic Structures. \emph{Theory Comput. Syst.} 55(4).
 \end{itemize}
 
 % ============================================================
-%     HONORS AND AWARDS (optional)
+%     HONORS AND AWARDS
 % ============================================================
 
-\section{Honors and Awards}
+\section{Grants, Honors \& Professional Memberships}
 \vspace{1pt}
 \begin{itemize}
-\item{\textbf{[Award Name]} -- [Event/Organization] ([Year]).}
+\item{Bavarian research grant -- Bavarian AI Act Accelerator (2024--2025).}
+\item{DFG research grant -- Automatic Structures (2012--2015).}
+\item{PhD in Computer Science, \textit{magna cum laude} (2016).}
+\item{Diploma in Computer Science, with distinction (2010).}
+\item{Member of the Association for Computing Machinery (ACM) since 2020.}
 \end{itemize}
 
-% ============================================================
-%     REFERENCES
-% ============================================================
-
-\section{References}
-\vspace{1pt}
-\begin{itemize}
-\item{Available upon request.}
-\end{itemize}
+% Note: no "References available upon request" filler section - the header
+% links DBLP/GitHub and references are provided only if actually listed.
 
 \end{document}

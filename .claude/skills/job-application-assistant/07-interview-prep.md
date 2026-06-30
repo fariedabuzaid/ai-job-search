@@ -8,32 +8,70 @@ Structure answers as: **Situation** (context), **Task** (your responsibility), *
 
 Keep answers to 1-2 minutes. Be specific. End with what you learned or would do differently.
 
-## Ready-Made STAR Examples
+## STAR Candidates (Complete Manually)
 
-<!-- These are populated by /setup from your actual experience. Below are templates showing the format. -->
+> Setup (Path A) generated these stubs from your CV, reference letter, and publications.
+> Fill in the Situation/Task/Action/Result details before using them in interviews.
 
-### 1. [PROJECT_NAME] ([SKILL_DEMONSTRATED])
-**S:** [CONTEXT - what was happening, what was the problem]
-**T:** [YOUR RESPONSIBILITY - what you specifically needed to do]
-**A:** [WHAT YOU DID - specific actions, tools, methods]
-**R:** [OUTCOME - measurable results, adoption, impact]
-**Use for:** "[QUESTION_TYPE_1]", "[QUESTION_TYPE_2]"
+### VeriFlow - probabilistic generative modeling meets NN verification
+**Source:** Publications / appliedAI - VeriFlow (AAAI 2026)
+**What happened:** First-authored a method connecting probabilistic generative modeling (flows) with neural network verification.
+**Why it matters:** Answers questions on research initiative, theory-meets-practice, technical depth, "tell me about a project you're proud of."
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
 
-### 2. [PROJECT_NAME] ([SKILL_DEMONSTRATED])
-**S:** [CONTEXT]
-**T:** [YOUR RESPONSIBILITY]
-**A:** [WHAT YOU DID]
-**R:** [OUTCOME]
-**Use for:** "[QUESTION_TYPE_1]", "[QUESTION_TYPE_2]"
+### sbi reloaded - open-source contribution at scale
+**Source:** Publications / appliedAI - sbi reloaded (JOSS 2025)
+**What happened:** Implemented flow-matching methods for simulation-based inference and contributed to a widely used open-source SBI toolkit (large multi-institution author list).
+**Why it matters:** Answers questions on collaboration, open source, working in large distributed teams, code quality.
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
 
-### 3. [PROJECT_NAME] ([SKILL_DEMONSTRATED])
-**S:** [CONTEXT]
-**T:** [YOUR RESPONSIBILITY]
-**A:** [WHAT YOU DID]
-**R:** [OUTCOME]
-**Use for:** "[QUESTION_TYPE_1]", "[QUESTION_TYPE_2]"
+### Co-supervising a PhD on SBI for material design (joint with BMW & Univ. of the Bundeswehr)
+**Source:** appliedAI reference letter / CV
+**What happened:** Co-supervised PhD-level research on inverse uncertainty methods bridging academia and industry.
+**Why it matters:** Answers leadership/mentoring, cross-organizational collaboration, ambiguity, "describe a time you guided someone."
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
 
-<!-- Add more STAR examples as needed. Aim for 4-6 covering different competencies. -->
+### Hybrid-engine optimization project (+15% simulated fuel efficiency)
+**Source:** appliedAI reference letter
+**What happened:** Directed a 12+-month project with 7 developers, achieving 15% simulated fuel efficiency gains via route-prediction algorithms (advanced to real-world testing).
+**Why it matters:** Answers technical project leadership, measurable impact, delivery under a long horizon, stakeholder management.
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
+
+### Scaling flagship ML courses online (+300% global reach)
+**Source:** appliedAI reference letter / CV
+**What happened:** Created practitioner ML curricula (Bayesian methods, anomaly detection, XAI), co-built a JupyterHub learning environment, and transformed flagship courses into scalable online formats.
+**Why it matters:** Answers teaching/communication, initiative, scaling something, "describe an impact beyond your core role."
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
+
+### Fast domain ramp-up at DeepL (research -> frontier production ML)
+**Source:** CV / DeepL role
+**What happened:** Moved from applied ML research into large-scale production deep learning, working on distributed training of 10B+ parameter models under strict latency/quality constraints.
+**Why it matters:** Answers "you don't have X experience," adaptability, learning fast, working at scale.
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
 
 ## Common Tough Questions
 

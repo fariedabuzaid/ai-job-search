@@ -22,13 +22,30 @@ Python 3.10+ is required for the salary lookup tool. Check with:
 python --version
 ```
 
-### Bun (for job search tools)
+### Node.js (for job search tools)
 
-The Danish job portal CLIs are written in TypeScript and run with Bun:
+The German/European job-search CLIs are zero-dependency Node scripts. Node 18+ is required (for built-in `fetch`). Check with:
 
 ```bash
-curl -fsSL https://bun.sh/install | bash
+node --version
 ```
+
+No `npm install` is needed for these tools. (The dormant Danish CLIs under `.agents/skills/` were written for [Bun](https://bun.sh) — only install Bun if you intend to revive them.)
+
+### Adzuna API key (pan-European search — optional but recommended)
+
+The `adzuna-search` tool covers Germany **and** Spain (and 16 more countries) through one API. It needs a free key:
+
+1. Sign up at [developer.adzuna.com](https://developer.adzuna.com) and create an app.
+2. Export the credentials so every search can see them:
+   ```bash
+   echo 'export ADZUNA_APP_ID=your_app_id'  >> ~/.bashrc
+   echo 'export ADZUNA_APP_KEY=your_app_key' >> ~/.bashrc
+   source ~/.bashrc   # or open a new terminal
+   ```
+   (Use `~/.zshrc` for zsh.) `/setup` can walk you through this too.
+
+The `arbeitsagentur-search` (Germany) and `arbeitnow-search` (English-friendly tech / remote EU) tools need **no** key.
 
 ### LaTeX (for compiling CVs and cover letters)
 
@@ -43,18 +60,20 @@ The CV compiles with `lualatex` (pdflatex often fails on modern MiKTeX installs 
 ## 2. Fork and clone
 
 ```bash
-gh repo fork MadsLorentzen/ai-job-search --clone
+gh repo fork fariedabuzaid/ai-job-search --clone
 cd ai-job-search
 ```
 
 Or manually: fork on GitHub, then clone your fork.
 
-## 3. Install job search CLI dependencies
+## 3. Job search CLI tools — no install needed
+
+The active German/European CLIs (`arbeitsagentur-search`, `adzuna-search`, `arbeitnow-search`) are zero-dependency Node scripts — there is nothing to install. Just make sure Node 18+ is available and, for Adzuna, that your API key is exported (see Prerequisites above).
+
+A quick smoke test of the no-auth German tool:
 
 ```bash
-for tool in jobbank-search jobdanmark-search jobindex-search jobnet-search; do
-  cd .agents/skills/$tool/cli && bun install && cd ../../../..
-done
+node .agents/skills/arbeitsagentur-search/cli/src/cli.mjs search -q "Data Scientist" --where Berlin --since 14 --limit 3 --format table
 ```
 
 ## 4. Run the setup interview
@@ -121,7 +140,7 @@ This creates `salary_data.json` which the `/apply` workflow uses for salary benc
 Find a job posting you're interested in, then:
 
 ```
-/apply https://jobindex.dk/job/1234567
+/apply https://www.arbeitsagentur.de/jobsuche/jobdetail/10000-1206543821-S
 ```
 
 Or paste the job description directly:
@@ -155,7 +174,7 @@ cd cover_letters && xelatex cover_<company>_<role>.tex && cd ..
 This is expected if you haven't set up salary benchmarking. The `/apply` workflow skips this step automatically.
 
 ### Job search CLI tools not working
-Make sure Bun is installed and you ran `bun install` in each CLI directory. The tools require network access to fetch job listings.
+The active German/European CLIs need Node 18+ (run `node --version`) and network access — there are no dependencies to install. If `adzuna-search` returns a `MISSING_CREDENTIALS` error, export your `ADZUNA_APP_ID` / `ADZUNA_APP_KEY` (see Prerequisites). The dormant Danish CLIs require Bun and are not wired into `/scrape`.
 
 ### LaTeX compilation errors
 - CV: uses `lualatex` (pdflatex often fails on modern MiKTeX with `fontawesome5` font-expansion errors; lualatex handles the same sources cleanly)

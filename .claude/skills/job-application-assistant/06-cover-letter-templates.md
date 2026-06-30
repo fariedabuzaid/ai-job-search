@@ -4,15 +4,17 @@
 
 Cover letters use a custom LaTeX document class (`cover.cls`) with Lato/Raleway fonts.
 
-**Output file:** `cover_letters/cover_<company>_<role>.tex`
-**Compile with:** XeLaTeX (cover.cls requires fontspec)
-**Font directory:** `cover_letters/OpenFonts/fonts/`
+**Output file:** `applications/<Company>/<YYYY>_<MM>_<position>/cover_letter.tex`
+**Compile with:** XeLaTeX (cover.cls requires fontspec/xetex)
+**Shared assets:** `cover_letters/cover.cls` + `cover_letters/OpenFonts/fonts/` - the build script symlinks these into the application folder at compile time, so reference fonts as `Path = OpenFonts/fonts/...` (relative), exactly as in the template. Do **not** copy the fonts into each folder.
 
 ### Compile command
 
 ```bash
-cd cover_letters && xelatex -interaction=nonstopmode cover_<company>_<role>.tex
+scripts/build_application.sh applications/<Company>/<YYYY>_<MM>_<position>
 ```
+
+The script links `cover.cls` + `OpenFonts` in, runs `xelatex`, removes the links, and cleans aux files.
 
 Expected output: `Output written on cover_<company>_<role>.pdf (1 page, ...)`. Any page count other than 1 is a failure that must be fixed before presenting to the user.
 

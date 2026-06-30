@@ -8,7 +8,7 @@ An AI-powered job application framework built on [Claude Code](https://claude.co
 
 ## What this is
 
-A structured workflow that turns Claude Code into a full-stack job application assistant. The core workflow (self-profiling, fit evaluation, and the drafter-reviewer application pipeline) is **language- and country-agnostic**. The job portal search skills are built for the Danish market (Jobindex, Jobnet, Akademikernes Jobbank, etc.), but the pattern is designed to be swapped for your local job boards.
+A structured workflow that turns Claude Code into a full-stack job application assistant. The core workflow (self-profiling, fit evaluation, and the drafter-reviewer application pipeline) is **language- and country-agnostic**. The job portal search skills target the **German and wider European market — especially Spain**: live CLI tools for the Bundesagentur für Arbeit (Germany), Adzuna (pan-European, incl. Spain), and Arbeitnow (English-friendly tech / remote EU). The pattern is designed to be swapped for any local job boards.
 
 ```
 /setup          /scrape              /apply <url>
@@ -32,7 +32,8 @@ The framework encodes career guidance best practices, including structured evalu
 
 - [Claude Code](https://claude.com/claude-code) (CLI)
 - Python 3.10+
-- [Bun](https://bun.sh) (for Danish job search CLI tools)
+- Node.js 18+ (the German/European job-search CLIs are zero-dependency Node scripts — no install step)
+- A free [Adzuna API key](https://developer.adzuna.com) — optional, but it's what unlocks Spain and pan-European search. The German (Bundesagentur) and Arbeitnow tools need no key.
 - LaTeX distribution with `lualatex` and `xelatex`: [TeX Live](https://tug.org/texlive/) or [MiKTeX](https://miktex.org/). The CV compiles with `lualatex` (pdflatex often fails on modern MiKTeX installs with `fontawesome5` font-expansion errors); the cover letter compiles with `xelatex` because `cover.cls` requires `fontspec`.
 
 ## Quick start
@@ -40,17 +41,23 @@ The framework encodes career guidance best practices, including structured evalu
 ### 1. Fork and clone
 
 ```bash
-gh repo fork MadsLorentzen/ai-job-search --clone
+gh repo fork fariedabuzaid/ai-job-search --clone
 cd ai-job-search
 ```
 
-### 2. Install job search tools
+### 2. Job search tools (no install)
+
+The German/European CLIs are zero-dependency Node scripts — nothing to install. Optionally export your Adzuna key to unlock Spain / pan-European search:
 
 ```bash
-cd .agents/skills/jobbank-search/cli && bun install && cd ../../../..
-cd .agents/skills/jobdanmark-search/cli && bun install && cd ../../../..
-cd .agents/skills/jobindex-search/cli && bun install && cd ../../../..
-cd .agents/skills/jobnet-search/cli && bun install && cd ../../../..
+export ADZUNA_APP_ID=your_app_id
+export ADZUNA_APP_KEY=your_app_key   # free key from https://developer.adzuna.com
+```
+
+Smoke-test the no-auth German tool:
+
+```bash
+node .agents/skills/arbeitsagentur-search/cli/src/cli.mjs search -q "Data Scientist" --where Berlin --since 14 --limit 3 --format table
 ```
 
 ### 3. Set up your profile
@@ -74,7 +81,7 @@ This searches multiple job portals for positions matching your profile, deduplic
 ### 5. Apply to a job
 
 ```bash
-/apply https://jobindex.dk/job/1234567
+/apply https://www.arbeitsagentur.de/jobsuche/jobdetail/10000-1206543821-S
 ```
 
 If the URL can't be fetched (some job portals block automated access), you can paste the job description directly instead:
@@ -118,16 +125,24 @@ ai-job-search/
 │   │   ├── job-scraper/               # Job search orchestration
 │   │   └── upskill/                   # /upskill skill gap analysis and learning plan
 │   └── settings.local.json            # Claude Code permissions
-├── .agents/skills/                    # Job portal CLI tools (Denmark)
-│   ├── jobbank-search/                # Akademikernes Jobbank
-│   ├── jobdanmark-search/             # Jobdanmark.dk
-│   ├── jobindex-search/               # Jobindex.dk
-│   └── jobnet-search/                 # Jobnet.dk (government portal)
+├── .agents/skills/                    # Job portal CLI tools
+│   ├── README.md                      # Active (DE/EU) vs dormant (DK) tools
+│   ├── arbeitsagentur-search/         # Germany — Bundesagentur für Arbeit (no key)
+│   ├── adzuna-search/                 # Pan-European incl. Spain (free API key)
+│   ├── arbeitnow-search/              # English-friendly tech / remote EU (no key)
+│   └── job*-search/                   # Danish tools (dormant — kept for reference)
+├── applications/                      # One folder per application (final outputs)
+│   └── <Company>/<YYYY>_<MM>_<position>/
+│       ├── cv.tex / cv.pdf            # Tailored CV
+│       ├── cover_letter.tex / .pdf   # Tailored cover letter
+│       └── job_description.md         # Posting text + link to original advertisement
 ├── cv/
-│   └── main_example.tex               # moderncv LaTeX template
-├── cover_letters/
+│   └── main_example.tex               # Master moderncv CV (tailored from for each role)
+├── cover_letters/                     # Shared cover-letter assets
 │   ├── cover.cls                      # Custom cover letter LaTeX class
 │   └── OpenFonts/                     # Lato + Raleway fonts
+├── scripts/
+│   └── build_application.sh           # Compile an application folder (lualatex CV + xelatex letter)
 ├── documents/                         # Career source materials for /setup Path A and /expand
 │   ├── README.md                      # Folder layout instructions
 │   ├── cv/                            # Master CV (PDF or .tex)
@@ -198,7 +213,15 @@ The CV uses [moderncv](https://ctan.org/pkg/moderncv) (banking style). The cover
 
 ### Job search tools
 
-The four CLI tools in `.agents/skills/` are specific to the **Danish job market** (Jobbank, Jobdanmark, Jobindex, Jobnet). They demonstrate the pattern for building job portal integrations. If you're in a different country, you can build equivalent tools for your local job portals using the same structure.
+Three live CLI tools in `.agents/skills/` cover the **German and European market**:
+
+| Tool | Market | Auth |
+|------|--------|------|
+| `arbeitsagentur-search` | 🇩🇪 Germany (official federal agency, largest source) | none |
+| `adzuna-search` | 🇩🇪🇪🇸 + 16 more (one API; Spain + pan-European; salary data) | free API key |
+| `arbeitnow-search` | 🇩🇪🇦🇹🇨🇭 + remote EU, English-friendly tech/AI/data | none |
+
+They're zero-dependency Node 18+ scripts. The four Danish tools (`jobindex`, `jobnet`, `jobdanmark`, `jobbank`) are kept **dormant** for reference (see `.agents/skills/README.md`). To target another country, build an equivalent tool using the same `SKILL.md` + `cli/src/cli.mjs` structure.
 
 ### Salary benchmarking
 

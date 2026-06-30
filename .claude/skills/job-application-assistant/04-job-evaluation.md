@@ -16,9 +16,9 @@ How well do the required/preferred skills align with the candidate's capabilitie
 | 40-59 | Partial match, significant upskilling needed |
 | 0-39 | Fundamental mismatch |
 
-**Strong match areas:** [YOUR_PRIMARY_SKILLS]
-**Moderate match areas:** [YOUR_SECONDARY_SKILLS]
-**Weak match areas:** [SKILLS_YOU_LACK]
+**Strong match areas:** scientific ML (simulation-based inference, Bayesian methods, uncertainty quantification, anomaly detection); generative modeling (flow matching, normalizing flows, diffusion); trustworthy/responsible AI (XAI, NN verification); Python/PyTorch/JAX; research design and publication
+**Moderate match areas:** large-scale/distributed training of 10B+ param models (recent, via DeepL); LLM/foundation-model engineering; MLOps/deployment infra (Docker, OpenShift, AWS, GCP); leadership/mentoring and team lead
+**Weak match areas:** domain-specialized 3D/computer-vision generative modeling; long-tenure people-management; pure DevOps/platform-only roles
 
 ### 2. Experience Match (0-100)
 Does work history align with what they're looking for?
@@ -30,9 +30,9 @@ Does work history align with what they're looking for?
 | 40-59 | Adjacent experience, would need to make the case |
 | 0-39 | Unrelated experience |
 
-**Strong:** [YOUR_DIRECT_EXPERIENCE_DOMAINS]
-**Moderate:** [YOUR_ADJACENT_EXPERIENCE]
-**Entry-level:** [ROLES_WITH_LIMITED_EXPERIENCE]
+**Strong:** AI/ML research scientist, applied/senior ML researcher, scientific ML in industrial settings, research group lead, university teaching/mentoring
+**Moderate:** ML engineer / research engineer (production-leaning), foundation-model / LLM research, research manager / computational science lead
+**Entry-level:** pure 3D/CV product roles, long-horizon people-management-only roles
 
 ### 3. Behavioral/Culture Fit (0-100)
 Does the role and company culture match the behavioral profile?
@@ -47,9 +47,12 @@ Does the role and company culture match the behavioral profile?
 **Red flags to research:** Department disorganization, work dominated by maintenance over development, poor chemistry with leadership, culture mismatches. Check reviews, media coverage, LinkedIn connections, and network contacts for insider perspective.
 
 ### 4. Location & Logistics (Pass/Fail + Notes)
-- Within commute range: PASS
-- Remote with occasional office: PASS
-- Requires relocation: FAIL (deal-breaker)
+Location is **flexible** for this candidate - it is not a deal-breaker. Treat as:
+- Munich / Germany (on-site or hybrid): PASS (home base, comfortable)
+- Spain (Madrid/Barcelona) on-site or relocation: PASS (a strong plus)
+- Remote (EU-wide): PASS
+- Relocation elsewhere in Europe: PASS for a strong/research-substantive role (note relocation effort)
+- Outside Europe / requires non-EU relocation: FLAG (discuss with user)
 - Frequent international travel: FLAG (discuss with user)
 
 ### 5. Career Alignment & Motivation (0-100)
@@ -63,19 +66,21 @@ Does this role advance career goals and contain tasks that energize?
 | 0-39 | Dead end or backwards step |
 
 **Career goals:**
-- [YOUR_CAREER_GOAL_1]
-- [YOUR_CAREER_GOAL_2]
-- [YOUR_CAREER_GOAL_3]
+- Research Scientist (AI/ML) at a strong research lab or R&D org - generative modeling, scientific ML, foundation models
+- Applied / Senior ML Researcher bridging rigorous methods and real-world impact (trustworthy AI, uncertainty, evaluation)
+- Growth toward Lead / Research Manager / computational-science-lead roles over time
 
-**Motivation filter:** Evaluate not just whether you *can* do the tasks, but whether the tasks will *energize* you. Consider:
-- Tasks that energize: [YOUR_ENERGIZING_TASKS]
-- Tasks that drain: [YOUR_DRAINING_TASKS]
+**Motivation filter:** Evaluate not just whether he *can* do the tasks, but whether the tasks will *energize* him. Consider:
+- Tasks that energize: framing open research questions and designing careful experiments; cross-disciplinary / domain ML with domain experts (simulation, sensor, engineering, scientific data); teaching, mentoring, and technical communication
+- Tasks that drain: pure maintenance/ops with no research; rigid process-heavy work with no room to frame problems; purely managerial roles with no technical substance
 - Non-task factors: leadership style, department culture, company values, degree of autonomy
 
-**Life situation alignment:** Consider personal constraints:
-- **Security**: [YOUR_FINANCIAL_SITUATION_CONTEXT]
-- **Flexibility**: [YOUR_SCHEDULE_CONSTRAINTS]
-- **Professional development**: [YOUR_GROWTH_PRIORITIES]
+**Hard filter:** The role **must be research-substantive**. Down-score or skip pure MLOps/maintenance roles with little novel modeling or research, regardless of other scores.
+
+**Life situation alignment:**
+- **Availability**: between roles as of June 2026 (most recently DeepL, Jan-Jun 2026); available to start soon and actively seeking. Still weights fit and research substance heavily, but the prior "no urgency, skip lateral moves" bias no longer applies
+- **Flexibility**: location-flexible - Munich comfortable, Spain (Madrid/Barcelona) a strong plus, remote (EU-wide) fine, relocation elsewhere in Europe acceptable for the right role
+- **Professional development**: values scientific quality, publication opportunities, and room to grow into research leadership
 
 ### 6. Salary Benchmark (Optional)
 

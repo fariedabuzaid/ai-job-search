@@ -1,14 +1,24 @@
 # Job Scraper
 
 **name:** job-scraper
-**description:** Scrapes Danish job sites for new positions matching your profile. Deduplicates across runs. Triggers on: job scrape, find jobs, search jobs, new jobs, job search, scrape jobs, /scrape
-**allowed-tools:** Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Agent, AskUserQuestion
+**description:** Scrapes German and European job sites for new positions matching your profile. Deduplicates across runs. Triggers on: job scrape, find jobs, search jobs, new jobs, job search, scrape jobs, /scrape
+**allowed-tools:** Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Agent, AskUserQuestion, Bash(node .agents/skills/arbeitsagentur-search/cli/src/cli.mjs *), Bash(node .agents/skills/adzuna-search/cli/src/cli.mjs *), Bash(node .agents/skills/arbeitnow-search/cli/src/cli.mjs *), Bash(node .agents/skills/linkedin-search/cli/src/cli.mjs *)
 
 ---
 
 ## How It Works
 
-This skill searches multiple Danish job sites using targeted queries based on your profile, deduplicates against previously seen jobs and the application tracker, and presents new matches with a quick fit assessment.
+This skill searches multiple German and European job sites using targeted queries based on your profile, deduplicates against previously seen jobs and the application tracker, and presents new matches with a quick fit assessment.
+
+**Prefer the dedicated CLI search skills when they cover the target market** — they hit live APIs/endpoints and return clean, structured data (no scraping guesswork):
+- `arbeitsagentur-search` — Germany (largest source, official, no auth)
+- `adzuna-search` — pan-European incl. Germany **and** Spain (needs free API key)
+- `arbeitnow-search` — English-friendly tech/AI/data + remote EU (no auth)
+- `linkedin-search` — any country, broad professional coverage via LinkedIn's public guest endpoint (no auth)
+
+Use the WebSearch/WebFetch flow below for portals **without** a usable endpoint — notably
+**Indeed** and **Glassdoor**, which hard-block scraping (HTTP 403), plus StepStone, Xing,
+InfoJobs, Tecnoempleo, EURES — or to cast a wider net.
 
 ## Invocation
 
@@ -39,8 +49,8 @@ Run **WebSearch** queries from `search-queries.md`. By default, run the top 3 pr
 If the user specified a focus area (e.g. "data science"), prioritize queries from that category.
 
 For each search:
-- Use `WebSearch` with site-specific queries (jobindex.dk, linkedin.com/jobs, karriere.dk, etc.)
-- Target your configured geographic area
+- Use `WebSearch` with site-specific queries (stepstone.de, xing.com/jobs, linkedin.com/jobs, infojobs.net, tecnoempleo.com, eures, etc.)
+- Target your configured geographic areas (Germany home region + Spain / wider Europe)
 - Look for postings from the last 14 days
 
 ### Step 2: Fetch & Parse

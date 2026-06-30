@@ -65,5 +65,7 @@ job_search_tracker.csv
 # Upskill reports (personal output)
 upskill/*.md
 
-# Agent usage logs
-.agents/
+# Agent usage logs (ignore runtime logs, but keep skill source tracked)
+.agents/*
+!.agents/skills/
+.agents/**/node_modules/

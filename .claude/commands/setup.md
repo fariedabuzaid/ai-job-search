@@ -312,8 +312,29 @@ Ask about:
 - **Role titles to search for:** "What job titles should I search for? For example: Data Scientist, ML Engineer, Geophysicist." Collect 3-8 specific titles.
 - **Key skills as search terms:** "Which of your skills are most likely to appear in job postings?" Pick 3-5 that are distinctive and searchable.
 - **Target companies (optional):** "Are there specific companies you'd like to monitor for openings?"
-- **Geographic scope:** "Which cities or regions should I search in? How far are you willing to commute?" Use this to define the location filter tiers (ideal, acceptable, borderline, too far).
-- **Job portals:** "The framework includes tools for Danish job portals (Jobindex, Jobbank, Jobdanmark, Jobnet). Are these the right ones for you, or do you use other sites?" Note: if the user is outside Denmark, acknowledge that the built-in CLI tools are Denmark-specific and suggest they can add their own portal integrations or rely on LinkedIn/Google site-searches.
+- **Geographic scope:** "Which cities or regions should I search in? How far are you willing to commute? This template is set up for the German job market plus the wider European market — especially Spain. Which countries and cities matter to you?" Use this to define the location filter tiers (ideal, acceptable, borderline, too far) for both the home country (Germany by default) and any additional European countries (e.g. Spain).
+- **Job portals:** "This template ships with three live job-search CLI tools:
+  - **`arbeitsagentur-search`** — Germany (official Bundesagentur, largest source, no setup needed)
+  - **`arbeitnow-search`** — English-friendly tech/AI/data + remote EU (no setup needed)
+  - **`adzuna-search`** — pan-European incl. Germany and Spain (needs a free API key, see next step)
+  Do these cover your markets, or do you also want WebSearch `site:` queries for portals like StepStone, Xing, InfoJobs, or Tecnoempleo?"
+
+### Section 9b: Adzuna API key (pan-European search)
+
+`adzuna-search` is the only tool needing credentials, and it is the one that covers Spain and cross-border European searches. Walk the user through it:
+
+1. Explain: "Adzuna gives you Germany **and** Spain (and 16 more countries) through one API. It needs a free key — sign up at https://developer.adzuna.com, create an app, and copy the **App ID** and **App Key**."
+2. Recommend persisting the credentials so every `/scrape` run can see them. Offer to add them to their shell profile:
+   ```bash
+   echo 'export ADZUNA_APP_ID=your_app_id' >> ~/.bashrc
+   echo 'export ADZUNA_APP_KEY=your_app_key' >> ~/.bashrc
+   ```
+   (Use `~/.zshrc` for zsh.) Never write the keys into a tracked file. If they prefer not to persist, they can pass `--app-id` / `--app-key` per call.
+3. If the user provides the keys, offer to verify with a quick live test:
+   ```bash
+   ADZUNA_APP_ID=... ADZUNA_APP_KEY=... node .agents/skills/adzuna-search/cli/src/cli.mjs search --country de -q "data scientist" --limit 2 --format table
+   ```
+4. If the user skips this step, note that `arbeitsagentur-search` and `arbeitnow-search` still work without any key — Adzuna (and the Spain coverage it provides) can be added later by re-running `/setup --section search`.
 
 **Important:** Also suggest role types the user may not have considered, based on their skill profile. For example:
 - If they have strong Python + domain expertise: "Have you considered roles like 'Technical Consultant' or 'Solutions Engineer' in your domain?"
@@ -358,8 +379,9 @@ Replace placeholder personal data with their actual name, contact info, and add 
 Replace all placeholder tokens in the search queries file with the user's actual information from Section 9 (or the equivalent follow-up questions in Path A's Step A7):
 - Replace `[YOUR_PRIMARY_ROLE_TYPE]`, `[YOUR_PRIMARY_JOB_TITLE]`, etc. with actual role titles
 - Replace `[YOUR_KEY_SKILL]`, `[YOUR_DOMAIN_KEYWORD_1]`, etc. with actual skills and domain terms
-- Replace `[YOUR_CITY]`, `[YOUR_COUNTRY]`, `[YOUR_REGION]` with actual location
-- Fill in the location filter tiers (ideal, acceptable, borderline, too far) based on commute constraints
+- Replace `[YOUR_CITY]`, `[YOUR_COUNTRY]`, `[YOUR_REGION]` with the user's German (home) location, and `[SPAIN_CITY]`, `[SPAIN_CITY_1]`, `[SPAIN_CITY_2]` with their Spanish / wider-European targets (or remove the Spain block if they only want Germany)
+- Fill in the example CLI commands at the top of the file with the user's real role titles, skills, and cities so they are copy-paste runnable
+- Fill in **both** the Germany (home base) and Spain / wider Europe location filter tiers (ideal, acceptable, borderline, too far) based on commute and relocation constraints
 - Organize queries into priority categories matching the user's career direction:
   - Priority 1: Their strongest/most desired role direction
   - Priority 2: Their domain expertise

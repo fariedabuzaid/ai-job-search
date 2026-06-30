@@ -6,15 +6,19 @@
 
 All CVs use the moderncv LaTeX package with the "banking" style and "blue" color scheme.
 
-**Output file:** `cv/main_<company>.tex`
-**Compile with:** **lualatex** on MiKTeX/TeX Live. pdflatex often fails on modern MiKTeX installs with `fontawesome5` font-expansion errors; lualatex handles the same sources cleanly.
-**Master reference:** `cv/main_example.tex` (comprehensive CV with all competencies, experience, and achievements - use as source when building targeted CVs)
+**Output file:** `applications/<Company>/<YYYY>_<MM>_<position>/cv.tex`
+**Compile with:** **lualatex** on MiKTeX/TeX Live (needs `fontawesome5` and `academicons`). pdflatex also works on TeX Live; on modern MiKTeX it may fail with `fontawesome5` font-expansion errors, so prefer lualatex.
+**Master reference:** `cv/main_example.tex` (comprehensive CV with all competencies, experience, and achievements, already using the preferred formatting - use as source when building targeted CVs)
 
 ### Compile command
 
+Use the build helper (compiles CV + cover letter for an application folder and cleans up):
+
 ```bash
-cd cv && lualatex -interaction=nonstopmode main_<company>.tex
+scripts/build_application.sh applications/<Company>/<YYYY>_<MM>_<position>
 ```
+
+Or compile the CV alone from inside the folder: `lualatex -interaction=nonstopmode cv.tex`
 
 Expected output: `Output written on main_<company>.pdf (2 pages, ...)`. Any page count other than 2 is a failure that must be fixed before presenting to the user.
 
@@ -105,12 +109,17 @@ Write 5-7 lines that function as an "elevator pitch": a concise, compelling intr
 
 **Create 2-3 profile statement templates for your main role types:**
 
-<!-- SETUP: These are populated based on your background -->
-**For [YOUR_PRIMARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_1]
+**For Research Scientist (AI/ML) roles:**
+> AI researcher with a PhD in Computer Science and 10+ years across ML research, technical leadership, and applied AI. Core strengths in generative modeling (flow matching, normalizing flows), scientific machine learning, Bayesian methods, and trustworthy AI. First-authored VeriFlow (AAAI 2026) and On Uniformly Scaling Flows; contributor to the sbi reloaded toolkit. I ground systems in sound methodology and push them toward useful, real-world impact - most recently at DeepL on real-time speech-to-speech translation at 10B+ parameter scale.
 
-**For [YOUR_SECONDARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_2]
+**For Applied / Senior ML Researcher roles:**
+> Applied research scientist combining mathematical foundations, scientific machine learning, and industrial ML delivery. Strong track record in simulation-based inference, probabilistic modeling, uncertainty quantification, and data-driven validation for complex systems. Experienced moving from hypotheses and prototypes to reproducible, production-oriented solutions, and in collaborating closely with domain experts on simulation, sensor, and engineering data.
+
+**For Lead / Research Manager roles:**
+> Research leader who has led an uncertainty-quantification subgroup within appliedAI's research department (the TransferLab), co-supervised PhD-level research (joint with BMW and the University of the Bundeswehr), and designed and taught practitioner ML curricula reaching a global audience. I combine first-principles research direction with pragmatic, cross-functional delivery, mentoring junior researchers while shipping rigorous, high-impact work.
+
+**For ML Engineer / Research Engineer roles (production-leaning):**
+> ML researcher with hands-on experience taking models from research to production. Most recently at DeepL I worked on transformer encoder-decoder systems with distributed training of 10B+ parameter models under strict quality, latency, and robustness constraints, backed by a decade of reproducible-workflow, validation, and benchmark-design experience (PyTorch, JAX, Docker, OpenShift, AWS, GCP).
 
 ### Core Competencies / Skills Section (Best Practice)
 Reorder and emphasize based on the role. Use bold category labels.
@@ -142,8 +151,8 @@ If there is a gap in your employment history:
 - Keep format brief, one line each
 
 ### References
-- List 2-4 references with name, title, company, and contact
-- End with: "More references are available upon request."
+- **Only include a References section if you list actual named references** (2-4 with name, title, company, contact). A standalone section that just says "Available upon request" is filler - omit it entirely. The header already links DBLP/GitHub, which is enough for follow-up.
+- If listing real references, end with: "More references are available upon request."
 - **Do not attach reference letters** - employers typically contact references directly
 
 ## Compile-and-Inspect Loop (MANDATORY)
